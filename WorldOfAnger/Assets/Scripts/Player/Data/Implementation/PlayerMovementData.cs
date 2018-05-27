@@ -22,7 +22,7 @@ public class PlayerMovementData : IPlayeMovementData
         Left = KeyCode.A;
         Right = KeyCode.D;
         MovementSpeed = 10;
-        GravityEqualizator = 2;
+        GravityEqualizator = 2.5f;
         Gravity = 9.81f;
         JumpHeightMultiplicator = 2;
     }

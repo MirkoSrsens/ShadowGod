@@ -21,17 +21,14 @@ namespace Player.Movement
             {
                 controller.SwapState(this);
             }
-            else if (controller.ActiveStateMovement == this)
+            else if (controller.ActiveStateMovement == this && PlayerMovementData.HorizontalMovement == 0)
             {
-                controller.ForceSwapState(null);
+                controller.EndState(this);
             }
-            Debug.Log(PlayerMovementData.rigBody);
-            Debug.Log(PlayerMovementData.HorizontalMovement);
         }
 
         public override void WhileActive_State()
         {
-            Debug.Log("Active state");
             if (PlayerMovementData.HorizontalMovement > 0)
             {
                 PlayerMovementData.rigBody.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
