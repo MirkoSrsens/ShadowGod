@@ -4,9 +4,8 @@ using UnityEngine;
 
 namespace General.State
 {
-    public class State : MonoBehaviour
+    public abstract class State : MonoBehaviour
     {
-
         /// <summary>
         /// Gets or sets <see cref="StateController"/>
         /// </summary>

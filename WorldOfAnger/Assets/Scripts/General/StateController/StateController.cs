@@ -36,6 +36,10 @@ namespace General.State
             }
         }
 
+        /// <summary>
+        /// Swap state using prioerity
+        /// </summary>
+        /// <param name="newState"></param>
         public void SwapState(State newState)
         {
             if (newState == null) return;
@@ -58,18 +62,32 @@ namespace General.State
 
         public void ForceSwapState(State newState)
         {
-            if (newState == null) return;
-            if (ActiveStateMechanic != null) ActiveStateMechanic.OnExit_State();
-
+            Debug.Log("Swap state");
+            
             if(newState is StateForMechanics)
             {
+                if (ActiveStateMechanic != null) ActiveStateMechanic.OnExit_State();
                 ActiveStateMechanic = (StateForMechanics)newState;
                 ActiveStateMechanic.OnEnter_State();
             }
             else if (newState is StateForMovement)
             {
+                if (ActiveStateMovement != null) ActiveStateMovement.OnExit_State();
                 ActiveStateMovement = (StateForMovement)newState;
                 ActiveStateMovement.OnEnter_State();
+            }
+        }
+
+        public void EndState(State stateToEnd)
+        {
+            if (stateToEnd != null) stateToEnd.OnExit_State();
+            if (stateToEnd is StateForMechanics)
+            {
+                ActiveStateMechanic = null;
+            }
+            else if (stateToEnd is StateForMovement)
+            {
+                ActiveStateMovement = null;
             }
         }
     }

@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2017.3.1f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -515,15 +517,20 @@
     <Compile Include="Assets\Plugin\Zenject\Source\Util\ZenUtilInternal.cs" />
     <Compile Include="Assets\Plugin\Zenject\Source\Validation\IValidatable.cs" />
     <Compile Include="Assets\Plugin\Zenject\Source\Validation\ValidationMarker.cs" />
+    <Compile Include="Assets\Scripts\Camera\CameraFollowObject.cs" />
     <Compile Include="Assets\Scripts\General\StateController\State.cs" />
     <Compile Include="Assets\Scripts\General\StateController\StateController.cs" />
     <Compile Include="Assets\Scripts\General\StateController\StateForMechanics.cs" />
     <Compile Include="Assets\Scripts\General\StateController\StateForMovement.cs" />
     <Compile Include="Assets\Scripts\Player\Data\Implementation\PlayerMovementData.cs" />
     <Compile Include="Assets\Scripts\Player\Data\Interfaces\IPlayeMovementData.cs" />
+    <Compile Include="Assets\Scripts\Player\Movement\PlayerIdle.cs" />
     <Compile Include="Assets\Scripts\Player\Movement\PlayerJump.cs" />
     <Compile Include="Assets\Scripts\Player\Movement\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\Player\Movement\StopMoving.cs" />
+    <Compile Include="Assets\Scripts\Player\Spells\LightSpell.cs" />
     <Compile Include="Assets\Scripts\Zanject\InjectionDefinition.cs" />
+    <Compile Include="Assets\UI\TestScripts\TestFocusSwap.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Plugin\Zenject\LICENSE.txt" />
