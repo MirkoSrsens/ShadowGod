@@ -12,6 +12,13 @@ namespace Player.Movement
             base.Initialization_State();
             Priority = 10;
         }
+
+        public override void OnEnter_State()
+        {
+            base.OnEnter_State();
+            animationController.SetAnimation(this.GetType().Name);
+        }
+
         /// <inheritdoc/>
         public override void Update_State()
         {
@@ -23,6 +30,7 @@ namespace Player.Movement
             }
             else if (controller.ActiveStateMovement == this && PlayerMovementData.HorizontalMovement == 0)
             {
+                PlayerMovementData.rigBody.velocity = new Vector2(0, PlayerMovementData.rigBody.velocity.y);
                 controller.EndState(this);
             }
         }
@@ -38,7 +46,7 @@ namespace Player.Movement
                 PlayerMovementData.rigBody.gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
             }
 
-            PlayerMovementData.rigBody.velocity = new Vector3(PlayerMovementData.HorizontalMovement * PlayerMovementData.MovementSpeed, PlayerMovementData.rigBody.velocity.y, PlayerMovementData.rigBody.velocity.z);
+            PlayerMovementData.rigBody.velocity = new Vector2(PlayerMovementData.HorizontalMovement * PlayerMovementData.MovementSpeed, PlayerMovementData.rigBody.velocity.y);
         }
     }
 }

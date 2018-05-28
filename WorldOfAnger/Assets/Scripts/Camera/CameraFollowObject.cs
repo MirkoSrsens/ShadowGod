@@ -3,85 +3,86 @@ using System.Collections.Generic;
 using General.State;
 using Player.Movement;
 using UnityEngine;
+using Zenject;
 
-public class CameraFollowObject : MonoBehaviour {
+namespace Camera
+{
+    /// <summary>
+    /// Scripts for following the object.
+    /// </summary>
+    public class CameraFollowObject : MonoBehaviour
+    {
+        [Inject]
+        /// Holds all value about camera movement.
+        ICameraData cameraData { get; set; }
 
-    private static GameObject Player { get; set; }
-    private StateController controller { get; set; }
-    private StopMoving stopMoving { get; set; }
-    private static GameObject ActiveObjectToFollow { get; set; }
-    private static float TimeToFollow { get; set; }
-    private static bool swapFlag { get; set; }
+        /// <summary>
+        /// Gets or sets object that is being followed by camera.
+        /// </summary>
+        static GameObject ActiveObjectToFollow { get; set; }
 
-    public float followDistance;
-    public float distanceToMove;
-    private float movementSpeed { get; set; }
+        /// <summary>
+        /// Gets or sets timeout of following.
+        /// </summary>
+        static float TimeToFollow { get; set; }
 
-    // Use this for initialization
-    void Awake () {
-        Player = GameObject.FindGameObjectWithTag("Player");
-        controller = Player.GetComponent<StateController>();
-        stopMoving = Player.GetComponent<StopMoving>();
-        ActiveObjectToFollow = Player;
-        followDistance = 15;
-        distanceToMove = 1;
-        movementSpeed = 10;
-        this.transform.position = new Vector3(ActiveObjectToFollow.transform.position.x, transform.position.y, ActiveObjectToFollow.transform.position.z - followDistance);
-    }
+        /// <summary>
+        /// Gets or sets flag that prevents update from calling coroutine multiple times.
+        /// </summary>
+        static bool swapFlag { get; set; }
 
-    // Update is called once per frame
-    void Update () {
-        if (ActiveObjectToFollow != null)
+        // Use this for initialization
+        void Awake()
         {
-            if ((ActiveObjectToFollow == Player && controller.ActiveStateMovement is PlayerIdle) || ActiveObjectToFollow != Player)
+            cameraData.Player = GameObject.FindGameObjectWithTag("Player");
+            ActiveObjectToFollow = cameraData.Player;
+
+            cameraData.controller = cameraData.Player.GetComponent<StateController>();
+            cameraData.stopMoving = cameraData.Player.GetComponent<StopMoving>();
+
+            cameraData.followDistance = ActiveObjectToFollow.transform.position.z - 5;
+            cameraData.movementSpeed = 10;
+
+            this.transform.position = new Vector3(ActiveObjectToFollow.transform.position.x, transform.position.y, cameraData.followDistance);
+        }
+
+        // Update is called once per frame
+        void FixedUpdate()
+        {
+            if (ActiveObjectToFollow != null)
             {
-                this.transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(ActiveObjectToFollow.transform.position.x, ActiveObjectToFollow.transform.position.y, ActiveObjectToFollow.transform.position.z - followDistance), movementSpeed * Time.deltaTime);
-            }
-            else
-            {
-                if (Vector3.Distance(new Vector3(transform.position.x, 0, 0), new Vector3(ActiveObjectToFollow.transform.position.x, 0, 0)) > distanceToMove)
+                this.transform.position = Vector3.Lerp(transform.position, new Vector3(ActiveObjectToFollow.transform.position.x, ActiveObjectToFollow.transform.position.y, cameraData.followDistance), cameraData.movementSpeed * Time.deltaTime);
+                if (ActiveObjectToFollow != cameraData.Player && !swapFlag)
                 {
-                    if (ActiveObjectToFollow.transform.position.x > transform.position.x)
-                    {
-                        this.transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(ActiveObjectToFollow.transform.position.x - distanceToMove, transform.position.y, ActiveObjectToFollow.transform.position.z - followDistance), movementSpeed);
-                    }
-                    if (ActiveObjectToFollow.transform.position.x < transform.position.x)
-                    {
-                        this.transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(ActiveObjectToFollow.transform.position.x + distanceToMove, transform.position.y, ActiveObjectToFollow.transform.position.z - followDistance), movementSpeed);
-                    }
+                    swapFlag = true;
+                    StartCoroutine(timeToComeBack(TimeToFollow));
                 }
-                if (Vector3.Distance(new Vector3(0, this.transform.position.y, 0), new Vector3(0, ActiveObjectToFollow.transform.position.y, 0)) > distanceToMove)
-                {
-                    if (ActiveObjectToFollow.transform.position.y < transform.position.y)
-                    {
-                        this.transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(transform.position.x, ActiveObjectToFollow.transform.position.y + distanceToMove, ActiveObjectToFollow.transform.position.z - followDistance), movementSpeed);
-                    }
-                    if (ActiveObjectToFollow.transform.position.y > transform.position.y)
-                    {
-                        this.transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(transform.position.x, ActiveObjectToFollow.transform.position.y - distanceToMove, ActiveObjectToFollow.transform.position.z - followDistance), movementSpeed);
-                    }
-                }
-            }
-            if (ActiveObjectToFollow != Player && !swapFlag)
-            {
-                swapFlag = true;
-                StartCoroutine(timeToComeBack(TimeToFollow));
             }
         }
-    }
 
-    public static void SetFollowTarget(GameObject followTarget, float timeOfFollow)
-    {
-        ActiveObjectToFollow = followTarget;
-        TimeToFollow = timeOfFollow;
-    }
+        /// <summary>
+        /// Sets follow target of the camera.
+        /// </summary>
+        /// <param name="followTarget">New target to follow.</param>
+        /// <param name="timeOfFollow">Time of following.</param>
+        public static void SetFollowTarget(GameObject followTarget, float timeOfFollow)
+        {
+            ActiveObjectToFollow = followTarget;
+            TimeToFollow = timeOfFollow;
+        }
 
-    private IEnumerator timeToComeBack(float timeOfFollow)
-    {
-        controller.SwapState(stopMoving);
-        yield return new WaitForSeconds(timeOfFollow);
-        ActiveObjectToFollow = Player;
-        controller.EndState(stopMoving);
-        swapFlag = false;
+        /// <summary>
+        /// Sets focus back to player after some time.
+        /// </summary>
+        /// <param name="timeOfFollow">Secounds to follow other object.</param>
+        /// <returns>Yield.</returns>
+        private IEnumerator timeToComeBack(float timeOfFollow)
+        {
+            cameraData.controller.SwapState(cameraData.stopMoving);
+            yield return new WaitForSeconds(timeOfFollow);
+            ActiveObjectToFollow = cameraData.Player;
+            cameraData.controller.EndState(cameraData.stopMoving);
+            swapFlag = false;
+        }
     }
 }

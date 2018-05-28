@@ -13,6 +13,12 @@ namespace Player.Movement
             base.Initialization_State();
             Priority = -10;
         }
+
+        public override void OnEnter_State()
+        {
+            base.OnEnter_State();
+            animationController.SetAnimation(this.GetType().Name);
+        }
         public override void Update_State()
         {
             if(controller.ActiveStateMovement == null)
