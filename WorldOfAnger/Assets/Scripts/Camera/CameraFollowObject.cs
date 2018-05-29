@@ -40,7 +40,7 @@ namespace Camera
             cameraData.controller = cameraData.Player.GetComponent<StateController>();
             cameraData.stopMoving = cameraData.Player.GetComponent<StopMoving>();
 
-            cameraData.followDistance = ActiveObjectToFollow.transform.position.z - 5;
+            cameraData.followDistance = ActiveObjectToFollow.transform.position.z - 4.5f;
             cameraData.movementSpeed = 10;
 
             this.transform.position = new Vector3(ActiveObjectToFollow.transform.position.x, transform.position.y, cameraData.followDistance);

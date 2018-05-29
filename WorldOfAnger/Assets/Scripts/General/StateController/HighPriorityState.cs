@@ -8,7 +8,7 @@ namespace General.State
     /// <summary>
     /// States that have bigger priority over any other state.
     /// </summary>
-    public class HighPriorityState :State
+    public abstract class HighPriorityState :State
     {
     }
 }

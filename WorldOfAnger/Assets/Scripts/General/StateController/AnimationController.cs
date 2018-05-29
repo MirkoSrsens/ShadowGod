@@ -23,5 +23,14 @@ namespace General.State
             ActiveAnimation = animationName;
         }
 
+        public void SetStateAnimation(string stateAnimationName)
+        {
+            if (animator.GetBool(stateAnimationName)) animator.SetBool(stateAnimationName, false);
+            else
+            {
+                animator.SetBool(stateAnimationName, true);
+            }
+        }
+
     }
 }

@@ -5,14 +5,20 @@ using UnityEngine;
 
 public class StopTimeSpell : HighPriorityState {
 
-    Rigidbody rig;
+    Rigidbody2D rig;
 
     protected override void Initialization_State()
     {
         base.Initialization_State();
-        rig = GetComponent<Rigidbody>();
+        rig = GetComponent<Rigidbody2D>();
         Priority = 10000;
     }
+
+    public override void OnEnter_State()
+    {
+        base.OnEnter_State();
+    }
+
     public override void Update_State()
     {
         base.Update_State();
@@ -29,18 +35,20 @@ public class StopTimeSpell : HighPriorityState {
     public override void WhileActive_State()
     {
         base.WhileActive_State();
-        if (!rig.isKinematic)
+        if (rig.bodyType == RigidbodyType2D.Dynamic)
         {
-            rig.isKinematic = true;
+            rig.bodyType = RigidbodyType2D.Kinematic;
         }
+
+        rig.velocity = Vector2.zero;
     }
 
     public override void OnExit_State()
     {
         base.OnExit_State();
-        if (rig.isKinematic)
+        if (rig.bodyType == RigidbodyType2D.Kinematic)
         {
-            rig.isKinematic = false;
+            rig.bodyType = RigidbodyType2D.Dynamic;
         }
     }
 }

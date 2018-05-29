@@ -44,7 +44,7 @@ public class MovementData : IMovementData
         Right = KeyCode.D;
         MovementSpeed = 2;
         GravityEqualizator = 2.5f;
-        Gravity = 5.81f;
+        Gravity = 4.81f;
         JumpHeightMultiplicator = 1.2f;
     }
 }

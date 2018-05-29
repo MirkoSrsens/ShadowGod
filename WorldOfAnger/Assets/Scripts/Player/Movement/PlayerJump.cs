@@ -11,9 +11,9 @@ namespace Player.Movement
         /// <inheritdoc/>
         public override void Update_State()
         {
-            if (PlayerMovementData.IsInAir)
+            if (MovementData.IsInAir)
             {
-                PlayerMovementData.rigBody.velocity = new Vector2(PlayerMovementData.rigBody.velocity.x, PlayerMovementData.rigBody.velocity.y - PlayerMovementData.GravityEqualizator * PlayerMovementData.Gravity * Time.deltaTime);
+                MovementData.rigBody.velocity = new Vector2(MovementData.rigBody.velocity.x, MovementData.rigBody.velocity.y - MovementData.GravityEqualizator * MovementData.Gravity * Time.deltaTime);
 
                 if(controller.ActiveStateMovement == null)
                 {
@@ -25,10 +25,10 @@ namespace Player.Movement
                 controller.EndState(this);
             }
 
-            if (Input.GetKeyDown(PlayerMovementData.Jump) && !PlayerMovementData.IsInAir)
+            if (Input.GetKeyDown(MovementData.Jump) && !MovementData.IsInAir)
             {
-                PlayerMovementData.rigBody.velocity = new Vector2(PlayerMovementData.rigBody.velocity.x, PlayerMovementData.Gravity * PlayerMovementData.JumpHeightMultiplicator);
-                PlayerMovementData.IsInAir = true;
+                MovementData.rigBody.velocity = new Vector2(MovementData.rigBody.velocity.x, MovementData.Gravity * MovementData.JumpHeightMultiplicator);
+                MovementData.IsInAir = true;
             }
 
         }
@@ -38,15 +38,15 @@ namespace Player.Movement
         {
             if (other.gameObject.tag == "Ground")
             {
-                PlayerMovementData.IsInAir = false;
-                PlayerMovementData.rigBody.velocity = Vector3.zero;
+                MovementData.IsInAir = false;
+                MovementData.rigBody.velocity = Vector3.zero;
             }
         }
 
         /// <inheritdoc/>
         public void OnTriggerExit2D(Collider2D other)
         {
-            PlayerMovementData.IsInAir = true;
+            MovementData.IsInAir = true;
         }
 
     }

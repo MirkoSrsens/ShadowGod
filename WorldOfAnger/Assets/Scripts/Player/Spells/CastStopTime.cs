@@ -18,12 +18,13 @@ public class CastStopTime : StateForMechanics {
     {
         base.OnEnter_State();
         GameInformation.TimeStoped = true;
+        animationController.SetStateAnimation(this.GetType().Name);
     }
 
     public override void Update_State()
     {
         base.Update_State();
-        if(Input.GetKey(playerMechanicsData.actionKey3))
+        if(Input.GetKey(MechanicsData.actionKey3))
         {
             controller.SwapState(this);
         }
@@ -36,6 +37,7 @@ public class CastStopTime : StateForMechanics {
     public override void OnExit_State()
     {
         base.OnExit_State();
+        animationController.SetStateAnimation(this.GetType().Name);
         GameInformation.TimeStoped = false;
     }
 }

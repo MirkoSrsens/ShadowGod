@@ -8,16 +8,16 @@ namespace General.State
     /// <summary>
     /// Defines stat that is used for movement.
     /// </summary>
-    public class StateForMovement : State
+    public abstract class StateForMovement : State
     {
         [Inject]
         /// Gets or sets player Movement.
-        protected IMovementData PlayerMovementData { get; set; }
+        protected IMovementData MovementData { get; set; }
 
         protected override void Initialization_State()
         {
             base.Initialization_State();
-            PlayerMovementData.rigBody = GetComponent<Rigidbody2D>();
+            MovementData.rigBody = GetComponent<Rigidbody2D>();
         }
     }
 }

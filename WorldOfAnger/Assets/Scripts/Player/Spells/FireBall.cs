@@ -14,17 +14,17 @@ namespace Player.Mechanic
             base.Initialization_State();
             Priority = 20;
             startPosition = 0.5f;
-            playerMechanicsData.spellPrefab = Resources.Load("FireBall", typeof(GameObject)) as GameObject;
+            MechanicsData.spellPrefab = Resources.Load("FireBall", typeof(GameObject)) as GameObject;
         }
 
         public override void OnEnter_State()
         {
             base.OnEnter_State();
             if(transform.rotation == Quaternion.Euler(0, 0, 0))
-                playerMechanicsData.spawnedObject = Instantiate(playerMechanicsData.spellPrefab, new Vector2(transform.position.x + startPosition, transform.position.y), this.transform.rotation, null);
+                MechanicsData.spawnedObject = Instantiate(MechanicsData.spellPrefab, new Vector2(transform.position.x + startPosition, transform.position.y), this.transform.rotation, null);
             else
             {
-                playerMechanicsData.spawnedObject = Instantiate(playerMechanicsData.spellPrefab, new Vector2(transform.position.x - startPosition, transform.position.y), this.transform.rotation, null);
+                MechanicsData.spawnedObject = Instantiate(MechanicsData.spellPrefab, new Vector2(transform.position.x - startPosition, transform.position.y), this.transform.rotation, null);
             }
         }
 
@@ -32,7 +32,7 @@ namespace Player.Mechanic
         {
             base.Update_State();
 
-            if(Input.GetKeyDown(playerMechanicsData.actionKey2))
+            if(Input.GetKeyDown(MechanicsData.actionKey2))
             {
                 controller.SwapState(this);
             }

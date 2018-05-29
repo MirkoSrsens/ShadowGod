@@ -15,20 +15,20 @@ namespace Player.Mechanic
         protected override void Initialization_State()
         {
             base.Initialization_State();
-            playerMechanicsData.spellPrefab = Resources.Load("SpellLight", typeof(GameObject)) as GameObject;
+            MechanicsData.spellPrefab = Resources.Load("SpellLight", typeof(GameObject)) as GameObject;
             Priority = 10;
         }
 
         public override void OnEnter_State()
         {
             base.OnEnter_State();
-            playerMechanicsData. spawnedObject = Instantiate(playerMechanicsData.spellPrefab);
+            MechanicsData. spawnedObject = Instantiate(MechanicsData.spellPrefab);
         }
 
         public override void Update_State()
         {
             base.Update_State();
-            if (Input.GetKey(playerMechanicsData.actionKey1))
+            if (Input.GetKey(MechanicsData.actionKey1))
             {
                 if (controller.ActiveStateMechanic != this)
                     controller.SwapState(this);
@@ -42,13 +42,13 @@ namespace Player.Mechanic
         public override void WhileActive_State()
         {
             base.WhileActive_State();
-            playerMechanicsData.spawnedObject.transform.position = new Vector3(transform.position.x, transform.position.y, -0.5f);
+            MechanicsData.spawnedObject.transform.position = new Vector3(transform.position.x, transform.position.y, -0.5f);
         }
 
         public override void OnExit_State()
         {
             base.OnExit_State();
-            Destroy(playerMechanicsData.spawnedObject);
+            Destroy(MechanicsData.spawnedObject);
         }
     }
 }

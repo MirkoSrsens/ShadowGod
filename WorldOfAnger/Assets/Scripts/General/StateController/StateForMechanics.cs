@@ -8,9 +8,9 @@ namespace General.State
     /// <summary>
     /// Defines states that are used for mechanics.
     /// </summary>
-    public class StateForMechanics : State
+    public abstract class StateForMechanics : State
     {
         [Inject]
-        protected IMechanicsData playerMechanicsData;
+        protected IMechanicsData MechanicsData;
     }
 }
