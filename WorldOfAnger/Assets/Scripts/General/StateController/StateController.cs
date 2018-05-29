@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace General.State
 {
+    /// <summary>
+    /// Holds function and values for controlling the states.
+    /// </summary>
     public class StateController : MonoBehaviour
     {
         /// <summary>
@@ -16,6 +19,11 @@ namespace General.State
         /// </summary>
         public StateForMovement ActiveStateMovement { get; set; }
 
+        /// <summary>
+        /// Gets or sets higher priority state.
+        /// </summary>
+        public HighPriorityState HighPriorityState { get; set; }
+
         // Use this for initialization
         void Awake()
         {
@@ -24,15 +32,22 @@ namespace General.State
         }
 
         // Update is called once per frame
-        void Update()
+        void FixedUpdate()
         {
-            if(ActiveStateMechanic != null)
+            if (HighPriorityState != null)
             {
-                ActiveStateMechanic.WhileActive_State();
+                HighPriorityState.WhileActive_State();
             }
-            if (ActiveStateMovement != null)
+            else
             {
-                ActiveStateMovement.WhileActive_State();
+                if (ActiveStateMechanic != null)
+                {
+                    ActiveStateMechanic.WhileActive_State();
+                }
+                if (ActiveStateMovement != null)
+                {
+                    ActiveStateMovement.WhileActive_State();
+                }
             }
         }
 
@@ -43,6 +58,14 @@ namespace General.State
         public void SwapState(State newState)
         {
             if (newState == null) return;
+
+            if(newState is HighPriorityState)
+            {
+                if (HighPriorityState == null || (newState != null && HighPriorityState.Priority < newState.Priority))
+                {
+                    ForceSwapState(newState);
+                }
+            }
 
             if (newState is StateForMechanics)
             {
@@ -63,8 +86,14 @@ namespace General.State
         public void ForceSwapState(State newState)
         {
             Debug.Log("Swap state");
-            
-            if(newState is StateForMechanics)
+
+            if (newState is HighPriorityState)
+            {
+                if (HighPriorityState != null) HighPriorityState.OnExit_State();
+                HighPriorityState = (HighPriorityState)newState;
+                HighPriorityState.OnEnter_State();
+            }
+            if (newState is StateForMechanics)
             {
                 if (ActiveStateMechanic != null) ActiveStateMechanic.OnExit_State();
                 ActiveStateMechanic = (StateForMechanics)newState;
@@ -81,6 +110,11 @@ namespace General.State
         public void EndState(State stateToEnd)
         {
             if (stateToEnd != null) stateToEnd.OnExit_State();
+
+            if (stateToEnd is HighPriorityState)
+            {
+                HighPriorityState = null;
+            }
             if (stateToEnd is StateForMechanics)
             {
                 ActiveStateMechanic = null;
