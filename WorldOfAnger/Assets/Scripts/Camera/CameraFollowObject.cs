@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using General.State;
+using Implementation.Data;
 using Player.Movement;
 using UnityEngine;
 using Zenject;
@@ -36,14 +37,10 @@ namespace Camera
         {
             cameraData.Player = GameObject.FindGameObjectWithTag("Player");
             ActiveObjectToFollow = cameraData.Player;
-
-            cameraData.controller = cameraData.Player.GetComponent<StateController>();
-            cameraData.stopMoving = cameraData.Player.GetComponent<StopMoving>();
-
-            cameraData.followDistance = ActiveObjectToFollow.transform.position.z - 4.5f;
-            cameraData.movementSpeed = 10;
-
-            this.transform.position = new Vector3(ActiveObjectToFollow.transform.position.x, transform.position.y, cameraData.followDistance);
+            cameraData.Controller = cameraData.Player.GetComponent<StateController>();
+            cameraData.StopMoving = cameraData.Player.GetComponent<StopMoving>();
+            cameraData.FollowDistance = ActiveObjectToFollow.transform.position.z - cameraData.ZAxisOffset;
+            this.transform.position = new Vector3(ActiveObjectToFollow.transform.position.x, transform.position.y, cameraData.FollowDistance);
         }
 
         // Update is called once per frame
@@ -51,7 +48,7 @@ namespace Camera
         {
             if (ActiveObjectToFollow != null)
             {
-                this.transform.position = Vector3.Lerp(transform.position, new Vector3(ActiveObjectToFollow.transform.position.x, ActiveObjectToFollow.transform.position.y, cameraData.followDistance), cameraData.movementSpeed * Time.deltaTime);
+                this.transform.position = Vector3.Lerp(transform.position, new Vector3(ActiveObjectToFollow.transform.position.x, ActiveObjectToFollow.transform.position.y, cameraData.FollowDistance), cameraData.MovementSpeed * Time.deltaTime);
                 if (ActiveObjectToFollow != cameraData.Player && !swapFlag)
                 {
                     swapFlag = true;
@@ -78,10 +75,10 @@ namespace Camera
         /// <returns>Yield.</returns>
         private IEnumerator timeToComeBack(float timeOfFollow)
         {
-            cameraData.controller.SwapState(cameraData.stopMoving);
+            cameraData.Controller.SwapState(cameraData.StopMoving);
             yield return new WaitForSeconds(timeOfFollow);
             ActiveObjectToFollow = cameraData.Player;
-            cameraData.controller.EndState(cameraData.stopMoving);
+            cameraData.Controller.EndState(cameraData.StopMoving);
             swapFlag = false;
         }
     }

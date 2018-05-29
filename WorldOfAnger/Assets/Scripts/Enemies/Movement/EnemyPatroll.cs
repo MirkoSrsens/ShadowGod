@@ -3,38 +3,45 @@ using System.Collections.Generic;
 using General.State;
 using UnityEngine;
 
-public class EnemyPatroll : StateForMovement {
 
-    int directionCorrection = 1;
-    public override void Update_State()
+namespace Enemy.State
+{
+    /// <summary>
+    /// Holds implementation of enemy patroll, while <see cref="GameInformation.Alarmed"/> is false.
+    /// </summary>
+    public class EnemyPatroll : StateForMovement
     {
-        base.Update_State();
-        if(controller.ActiveStateMovement == null)
+
+        int directionCorrection = 1;
+        public override void Update_State()
         {
-            controller.SwapState(this);
-        }
-    }
-
-    public override void WhileActive_State()
-    {
-        base.WhileActive_State();
-        MovementData.rigBody.velocity = new Vector2(directionCorrection*20 * Time.deltaTime * MovementData.MovementSpeed, MovementData.rigBody.velocity.y);
-        Debug.Log(MovementData.rigBody.velocity.x);
-    }
-
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(controller.ActiveStateMovement == this)
-        {
-            if (this.transform.rotation == Quaternion.Euler(0, 0, 0))
+            base.Update_State();
+            if (controller.ActiveStateMovement == null)
             {
-                directionCorrection = -1;
-                this.transform.rotation = Quaternion.Euler(0, 180, 0);
+                controller.SwapState(this);
             }
-            else
+        }
+
+        public override void WhileActive_State()
+        {
+            base.WhileActive_State();
+            MovementData.rigBody.velocity = new Vector2(directionCorrection * 20 * Time.deltaTime * MovementData.MovementSpeed, MovementData.rigBody.velocity.y);
+        }
+
+        public void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (controller.ActiveStateMovement == this)
             {
-                directionCorrection = 1;
-                this.transform.rotation = Quaternion.Euler(0, 0, 0);
+                if (this.transform.rotation == Quaternion.Euler(0, 0, 0))
+                {
+                    directionCorrection = -1;
+                    this.transform.rotation = Quaternion.Euler(0, 180, 0);
+                }
+                else
+                {
+                    directionCorrection = 1;
+                    this.transform.rotation = Quaternion.Euler(0, 0, 0);
+                }
             }
         }
     }

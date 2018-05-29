@@ -4,7 +4,7 @@ using General.State;
 using Player.Movement;
 using UnityEngine;
 
-namespace Camera
+namespace Implementation.Data
 {
     public class CameraData : ICameraData
     {
@@ -12,15 +12,25 @@ namespace Camera
         public GameObject Player { get; set; }
 
         /// <inheritdoc/>
-        public StateController controller { get; set; }
+        public StateController Controller { get; set; }
 
         /// <inheritdoc/>
-        public StopMoving stopMoving { get; set; }
+        public StopMoving StopMoving { get; set; }
 
         /// <inheritdoc/>
-        public float followDistance { get; set; }
+        public float FollowDistance { get; set; }
 
         /// <inheritdoc/>
-        public float movementSpeed { get; set; }
+        public float MovementSpeed { get; set; }
+
+        /// <inheritdoc/>
+        public float ZAxisOffset { get; set; }
+
+
+        public CameraData()
+        {
+            ZAxisOffset = 4.5f;
+            MovementSpeed = 10;
+        }
     }
 }

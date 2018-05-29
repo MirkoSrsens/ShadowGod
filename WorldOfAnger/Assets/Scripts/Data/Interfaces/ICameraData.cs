@@ -6,9 +6,9 @@ using General.State;
 using Player.Movement;
 using UnityEngine;
 
-namespace Camera
+namespace Implementation.Data
 {
-    interface ICameraData
+    public interface ICameraData
     {
         /// <summary>
         /// Gets or sets player component
@@ -18,21 +18,26 @@ namespace Camera
         /// <summary>
         /// Gets or sets state controllerOfThePlayer.
         /// </summary>
-        StateController controller { get; set; }
+        StateController Controller { get; set; }
 
         /// <summary>
-        /// Gets or sets <see cref="StopMoving"/> component in player.
+        /// Gets or sets <see cref="global::Player.Movement.StopMoving"/> component in player.
         /// </summary>
-        StopMoving stopMoving { get; set; }
+        StopMoving StopMoving { get; set; }
 
         /// <summary>
         /// Follow distance of the z axis.
         /// </summary>
-        float followDistance { get; set; }
+        float FollowDistance { get; set; }
 
         /// <summary>
         /// Gets or sets movement speed of the camera.
         /// </summary>
-        float movementSpeed { get; set; }
+        float MovementSpeed { get; set; }
+
+        /// <summary>
+        /// Gets or sets z axis offset.
+        /// </summary>
+        float ZAxisOffset { get; set; }
     }
 }

@@ -8,27 +8,30 @@ namespace General.State
 {
     public class AnimationController:MonoBehaviour
     {
-        Animator animator;
+        /// <summary>
+        /// Gets or sets animator; 
+        /// </summary>
+        Animator Anima { get; set; }
         string ActiveAnimation { get; set; }
 
         private void Awake()
         {
-            animator = GetComponentInChildren<Animator>();
+            Anima = GetComponentInChildren<Animator>();
         }
 
         public void SetAnimation(string animationName)
         {
-            if(!string.IsNullOrEmpty(ActiveAnimation)) animator.SetBool(ActiveAnimation, false);
-            animator.SetBool(animationName, true);
+            if(!string.IsNullOrEmpty(ActiveAnimation)) Anima.SetBool(ActiveAnimation, false);
+            Anima.SetBool(animationName, true);
             ActiveAnimation = animationName;
         }
 
         public void SetStateAnimation(string stateAnimationName)
         {
-            if (animator.GetBool(stateAnimationName)) animator.SetBool(stateAnimationName, false);
+            if (Anima.GetBool(stateAnimationName)) Anima.SetBool(stateAnimationName, false);
             else
             {
-                animator.SetBool(stateAnimationName, true);
+                Anima.SetBool(stateAnimationName, true);
             }
         }
 

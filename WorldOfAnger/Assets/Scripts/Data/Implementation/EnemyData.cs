@@ -1,19 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class EnemyData : IEnemyData
+namespace Implementation.Data
 {
-    public GameObject player { get; set; }
-
-    public float RangeOfVision { get; set; }
-
-    public EnemyData()
+    /// <summary>
+    /// Holds implementation of <see cref="IEnemyData"/>.
+    /// </summary>
+    public class EnemyData : IEnemyData
     {
-        player = GameObject.Find("Player");
+        /// <inheritdoc/>
+        public GameObject player { get; set; }
 
-        RangeOfVision = 5;
+        /// <inheritdoc/>
+        public float RangeOfVision { get; set; }
+
+        /// <inheritdoc/>
+        public float AngleOfVision { get; set; }
+
+        /// <inheritdoc/>
+        public float RangeOfAttack { get; set; }
+
+        public EnemyData()
+        {
+            player = GameObject.Find("Player");
+
+            RangeOfVision = 5;
+        }
     }
 }
