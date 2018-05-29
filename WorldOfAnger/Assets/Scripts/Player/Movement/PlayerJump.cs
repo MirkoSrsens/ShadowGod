@@ -11,9 +11,9 @@ namespace Player.Movement
         /// <inheritdoc/>
         public override void Update_State()
         {
-            if (PlayerMovementData.IsInAir)
+            if (MovementData.IsInAir)
             {
-                PlayerMovementData.rigBody.velocity = new Vector3(PlayerMovementData.rigBody.velocity.x, PlayerMovementData.rigBody.velocity.y - PlayerMovementData.GravityEqualizator * PlayerMovementData.Gravity * Time.deltaTime, PlayerMovementData.rigBody.velocity.z);
+                MovementData.rigBody.velocity = new Vector2(MovementData.rigBody.velocity.x, MovementData.rigBody.velocity.y - MovementData.GravityEqualizator * MovementData.Gravity * Time.deltaTime);
 
                 if(controller.ActiveStateMovement == null)
                 {
@@ -25,28 +25,28 @@ namespace Player.Movement
                 controller.EndState(this);
             }
 
-            if (Input.GetKeyDown(PlayerMovementData.Jump) && !PlayerMovementData.IsInAir)
+            if (Input.GetKeyDown(MovementData.Jump) && !MovementData.IsInAir)
             {
-                PlayerMovementData.rigBody.velocity = new Vector3(PlayerMovementData.rigBody.velocity.x, PlayerMovementData.Gravity * PlayerMovementData.JumpHeightMultiplicator, PlayerMovementData.rigBody.velocity.z);
-                PlayerMovementData.IsInAir = true;
+                MovementData.rigBody.velocity = new Vector2(MovementData.rigBody.velocity.x, MovementData.Gravity * MovementData.JumpHeightMultiplicator);
+                MovementData.IsInAir = true;
             }
 
         }
 
         /// <inheritdoc/>
-        public void OnTriggerStay(Collider other)
+        public void OnTriggerStay2D(Collider2D other)
         {
             if (other.gameObject.tag == "Ground")
             {
-                PlayerMovementData.IsInAir = false;
-                PlayerMovementData.rigBody.velocity = Vector3.zero;
+                MovementData.IsInAir = false;
+                MovementData.rigBody.velocity = Vector3.zero;
             }
         }
 
         /// <inheritdoc/>
-        public void OnTriggerExit(Collider other)
+        public void OnTriggerExit2D(Collider2D other)
         {
-            PlayerMovementData.IsInAir = true;
+            MovementData.IsInAir = true;
         }
 
     }

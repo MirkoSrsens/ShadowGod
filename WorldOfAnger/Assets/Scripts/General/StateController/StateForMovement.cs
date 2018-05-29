@@ -5,15 +5,19 @@ using Zenject;
 
 namespace General.State
 {
-    public class StateForMovement : State
+    /// <summary>
+    /// Defines stat that is used for movement.
+    /// </summary>
+    public abstract class StateForMovement : State
     {
         [Inject]
-        protected IPlayeMovementData PlayerMovementData { get; set; }
+        /// Gets or sets player Movement.
+        protected IMovementData MovementData { get; set; }
 
         protected override void Initialization_State()
         {
             base.Initialization_State();
-            PlayerMovementData.rigBody = GetComponent<Rigidbody>();
+            MovementData.rigBody = GetComponent<Rigidbody2D>();
         }
     }
 }

@@ -7,31 +7,33 @@ using UnityEngine;
 
 namespace Player.Mechanic
 {
+    /// <summary>
+    /// Spell used for ligting
+    /// </summary>
     public class LightSpell : StateForMechanics
     {
-        GameObject spellPrefab { get; set; }
-        GameObject spawnedObject { get; set; }
         protected override void Initialization_State()
         {
             base.Initialization_State();
-            spellPrefab = Resources.Load("SpellLight", typeof(GameObject)) as GameObject;
+            MechanicsData.spellPrefab = Resources.Load("SpellLight", typeof(GameObject)) as GameObject;
+            Priority = 10;
         }
 
         public override void OnEnter_State()
         {
             base.OnEnter_State();
-            spawnedObject = Instantiate(spellPrefab);
+            MechanicsData. spawnedObject = Instantiate(MechanicsData.spellPrefab);
         }
 
         public override void Update_State()
         {
             base.Update_State();
-            if(Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKey(MechanicsData.actionKey1))
             {
-                if(controller.ActiveStateMechanic != this)
-                controller.SwapState(this);
+                if (controller.ActiveStateMechanic != this)
+                    controller.SwapState(this);
             }
-            else
+            else if (controller.ActiveStateMechanic == this)
             {
                 controller.EndState(this);
             }
@@ -40,13 +42,13 @@ namespace Player.Mechanic
         public override void WhileActive_State()
         {
             base.WhileActive_State();
-            spawnedObject.transform.position = new Vector3(transform.position.x, transform.position.y, -2);
+            MechanicsData.spawnedObject.transform.position = new Vector3(transform.position.x, transform.position.y, -0.5f);
         }
 
         public override void OnExit_State()
         {
             base.OnExit_State();
-            Destroy(spawnedObject);
+            Destroy(MechanicsData.spawnedObject);
         }
     }
 }

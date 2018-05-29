@@ -4,12 +4,20 @@ using UnityEngine;
 
 namespace General.State
 {
+    /// <summary>
+    /// Core state for all actions.
+    /// </summary>
     public abstract class State : MonoBehaviour
     {
         /// <summary>
         /// Gets or sets <see cref="StateController"/>
         /// </summary>
         public StateController controller;
+
+        /// <summary>
+        /// Gets or sets animation contriller;
+        /// </summary>
+        public AnimationController animationController;
 
         /// <summary>
         /// Gets or sets state priority.
@@ -60,6 +68,7 @@ namespace General.State
         void Start()
         {
             controller = GetComponent<StateController>();
+            animationController = GetComponent<AnimationController>();
             Initialization_State();
         }
 
