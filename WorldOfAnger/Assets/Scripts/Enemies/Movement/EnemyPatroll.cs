@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using General.State;
+using Implementation.Data;
 using UnityEngine;
-
+using Zenject;
 
 namespace Enemy.State
 {
@@ -11,8 +12,17 @@ namespace Enemy.State
     /// </summary>
     public class EnemyPatroll : StateForMovement
     {
+        [Inject]
+        private IEnemyData enemyData { get; set; }
 
         int directionCorrection = 1;
+
+        protected override void Initialization_State()
+        {
+            base.Initialization_State();
+            Priority = 1;
+        }
+
         public override void Update_State()
         {
             base.Update_State();

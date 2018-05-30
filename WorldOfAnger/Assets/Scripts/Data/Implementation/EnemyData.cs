@@ -14,7 +14,10 @@ namespace Implementation.Data
         public float RangeOfVision { get; set; }
 
         /// <inheritdoc/>
-        public float AngleOfVision { get; set; }
+        public float AngleOfVisionHigher { get; set; }
+
+        /// <inheritdoc/>
+        public float AngleOfVisionLower { get; set; }
 
         /// <inheritdoc/>
         public float RangeOfAttack { get; set; }
@@ -23,7 +26,43 @@ namespace Implementation.Data
         {
             player = GameObject.Find("Player");
 
-            RangeOfVision = 5;
+            RangeOfVision = 3.5f;
+            AngleOfVisionLower = 0;
+            AngleOfVisionHigher = 75;
+            RangeOfAttack = 1;
+        }
+
+        /// <inheritdoc/>
+        public bool IsTargetDetected(Transform position)
+        {
+            var angle = Vector2.Angle(position.transform.right, player.transform.position - position.transform.position);
+
+            if (angle > AngleOfVisionLower && angle < AngleOfVisionHigher)
+            {
+                RaycastHit2D hit = Physics2D.Raycast(position.transform.position, player.transform.position - position.transform.position, RangeOfVision);
+                if (hit.collider != null && hit.collider.tag == "Player")
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool IsTargetInRangeOfAttack(Transform position)
+        {
+            var angle = Vector2.Angle(position.transform.right, player.transform.position - position.transform.position);
+
+            if (angle > AngleOfVisionLower && angle < AngleOfVisionHigher)
+            {
+                RaycastHit2D hit = Physics2D.Raycast(position.transform.position, player.transform.position - position.transform.position, RangeOfAttack);
+                if (hit.collider != null && hit.collider.tag == "Player")
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

@@ -255,6 +255,9 @@
     <Reference Include="UnityEditor.Graphs">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.WSA.Extensions">
+      <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/MetroSupport/UnityEditor.WSA.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
@@ -262,25 +265,25 @@
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Advertisements">
-      <HintPath>C:/Users/Mirko/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.3/UnityEngine.Advertisements.dll</HintPath>
+      <HintPath>C:/Users/MirkoKojiRadi/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.3/UnityEngine.Advertisements.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.Advertisements">
-      <HintPath>C:/Users/Mirko/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.3/Editor/UnityEditor.Advertisements.dll</HintPath>
+      <HintPath>C:/Users/MirkoKojiRadi/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.3/Editor/UnityEditor.Advertisements.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Analytics">
-      <HintPath>C:/Users/Mirko/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.13/UnityEngine.Analytics.dll</HintPath>
+      <HintPath>C:/Users/MirkoKojiRadi/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.13/UnityEngine.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.Analytics">
-      <HintPath>C:/Users/Mirko/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.13/Editor/UnityEditor.Analytics.dll</HintPath>
+      <HintPath>C:/Users/MirkoKojiRadi/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.13/Editor/UnityEditor.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Purchasing">
-      <HintPath>C:/Users/Mirko/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.purchasing@0.0.19/UnityEngine.Purchasing.dll</HintPath>
+      <HintPath>C:/Users/MirkoKojiRadi/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.purchasing@0.0.19/UnityEngine.Purchasing.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.Purchasing">
-      <HintPath>C:/Users/Mirko/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.purchasing@0.0.19/Editor/UnityEditor.Purchasing.dll</HintPath>
+      <HintPath>C:/Users/MirkoKojiRadi/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.purchasing@0.0.19/Editor/UnityEditor.Purchasing.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.StandardEvents">
-      <HintPath>C:/Users/Mirko/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.10/UnityEngine.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/MirkoKojiRadi/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.10/UnityEngine.StandardEvents.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -526,9 +529,11 @@
     <Compile Include="Assets\Scripts\Data\Interfaces\IEnemyData.cs" />
     <Compile Include="Assets\Scripts\Data\Interfaces\IMechanicsData.cs" />
     <Compile Include="Assets\Scripts\Data\Interfaces\MovementData.cs" />
-    <Compile Include="Assets\Scripts\Enemies\Detection\EnemyDetection.cs" />
+    <Compile Include="Assets\Scripts\Enemies\Detection\EnemyAttackPlayer.cs" />
+    <Compile Include="Assets\Scripts\Enemies\Detection\EnemyDetectTarget.cs" />
     <Compile Include="Assets\Scripts\Enemies\Movement\EnemyFollowTarget.cs" />
     <Compile Include="Assets\Scripts\Enemies\Movement\EnemyPatroll.cs" />
+    <Compile Include="Assets\Scripts\Enemies\Movement\EnemyStop.cs" />
     <Compile Include="Assets\Scripts\General\GlobalInformations\GameInformation.cs" />
     <Compile Include="Assets\Scripts\General\StateController\AnimationController.cs" />
     <Compile Include="Assets\Scripts\General\StateController\HighPriorityState.cs" />
@@ -536,8 +541,8 @@
     <Compile Include="Assets\Scripts\General\StateController\StateController.cs" />
     <Compile Include="Assets\Scripts\General\StateController\StateForMechanics.cs" />
     <Compile Include="Assets\Scripts\General\StateController\StateForMovement.cs" />
-    <Compile Include="Assets\Scripts\OtherComponents\ObjectSpawner\DestroyObject.cs" />
-    <Compile Include="Assets\Scripts\OtherComponents\ObjectSpawner\SpawnObjects.cs" />
+    <Compile Include="Assets\Scripts\UniqueComponents\ObjectSpawner\DestroyObject.cs" />
+    <Compile Include="Assets\Scripts\UniqueComponents\ObjectSpawner\SpawnObjects.cs" />
     <Compile Include="Assets\Scripts\Player\Movement\PlayerIdle.cs" />
     <Compile Include="Assets\Scripts\Player\Movement\PlayerJump.cs" />
     <Compile Include="Assets\Scripts\Player\Movement\PlayerMovement.cs" />

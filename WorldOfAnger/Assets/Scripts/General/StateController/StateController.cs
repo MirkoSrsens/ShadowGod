@@ -85,8 +85,6 @@ namespace General.State
 
         public void ForceSwapState(State newState)
         {
-            Debug.Log("Swap state");
-
             if (newState is HighPriorityState)
             {
                 if (HighPriorityState != null) HighPriorityState.OnExit_State();
