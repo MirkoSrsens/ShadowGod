@@ -1,8 +1,8 @@
-[Ll]ibrary/
-[Tt]Temp/
-[Oo]bj/
-[Bb]uild/
-[Bb]uilds/
+WorldOfAnger/[Ll]ibrary/
+WorldOfAnger/[Tt]Temp/
+WorldOfAnger/[Oo]bj/
+WorldOfAnger/[Bb]uild/
+WorldOfAnger/[Bb]uilds/
 Assets/AssetStoreTools*
 
 # Visual Studio cache directory
@@ -34,3 +34,4 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
