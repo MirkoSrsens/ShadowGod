@@ -13,13 +13,11 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2017.3.1f1</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -541,8 +539,6 @@
     <Compile Include="Assets\Scripts\General\StateController\StateController.cs" />
     <Compile Include="Assets\Scripts\General\StateController\StateForMechanics.cs" />
     <Compile Include="Assets\Scripts\General\StateController\StateForMovement.cs" />
-    <Compile Include="Assets\Scripts\UniqueComponents\ObjectSpawner\DestroyObject.cs" />
-    <Compile Include="Assets\Scripts\UniqueComponents\ObjectSpawner\SpawnObjects.cs" />
     <Compile Include="Assets\Scripts\Player\Movement\PlayerIdle.cs" />
     <Compile Include="Assets\Scripts\Player\Movement\PlayerJump.cs" />
     <Compile Include="Assets\Scripts\Player\Movement\PlayerMovement.cs" />
@@ -552,6 +548,8 @@
     <Compile Include="Assets\Scripts\Player\Spells\FireBallObject.cs" />
     <Compile Include="Assets\Scripts\Player\Spells\LightSpell.cs" />
     <Compile Include="Assets\Scripts\Player\Spells\StopTimeSpell.cs" />
+    <Compile Include="Assets\Scripts\UniqueComponents\ObjectSpawner\DestroyObject.cs" />
+    <Compile Include="Assets\Scripts\UniqueComponents\ObjectSpawner\SpawnObjects.cs" />
     <Compile Include="Assets\Scripts\Zanject\InjectionDefinition.cs" />
     <Compile Include="Assets\UI\DialogBox\EnqueueText.cs" />
     <Compile Include="Assets\UI\TestScripts\TestFocusSwap.cs" />

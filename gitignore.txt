@@ -1,9 +1,9 @@
-[Ll]ibrary/
-[Tt]emp/
-[Oo]bj/
-[Bb]uild/
-[Bb]uilds/
-Assets/AssetStoreTools*
+WorldOfAnger/[Ll]ibrary/
+WorldOfAnger/[Tt]Temp/
+WorldOfAnger/[Oo]bj/
+WorldOfAnger/[Bb]uild/
+WorldOfAnger/[Bb]uilds/
+WorldOfAnger/Assets/AssetStoreTools*
 
 # Visual Studio cache directory
 .vs/
