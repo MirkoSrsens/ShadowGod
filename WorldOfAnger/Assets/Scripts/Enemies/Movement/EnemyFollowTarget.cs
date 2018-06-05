@@ -16,10 +16,13 @@ namespace Enemy.State
 
         private float timeToWait { get; set; }
 
+        private Vector2 LastPlaceEnemySawPlayer { get; set; }
+
         protected override void Initialization_State()
         {
             base.Initialization_State();
             Priority = 10;
+            timeToWait = 5;
         }
         public override void Update_State()
         {
@@ -45,9 +48,22 @@ namespace Enemy.State
             else
             {
                 StopCoroutine(FollowPlayerForTime());
+                LastPlaceEnemySawPlayer = enemyData.player.transform.position;
                 // Debug.Log("Again detected");
             }
-            transform.position = Vector3.Lerp(transform.position, enemyData.player.transform.position, 20 * Time.deltaTime);
+
+            //// Proper rotation
+            var roationAngle = enemyData.player.transform.position.x - transform.position.x;
+
+            if(roationAngle < 0 )
+            {
+                this.transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
+            else
+            {
+                this.transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+            transform.position = Vector2.Lerp(transform.position, new Vector2(LastPlaceEnemySawPlayer.x, transform.position.y), MovementData.MovementSpeed * Time.deltaTime);
         }
 
 

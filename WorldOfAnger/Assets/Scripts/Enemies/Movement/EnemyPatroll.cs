@@ -40,7 +40,7 @@ namespace Enemy.State
 
         public void OnTriggerEnter2D(Collider2D collision)
         {
-            if (controller.ActiveStateMovement == this)
+            if (controller.ActiveStateMovement == this && collision.gameObject.tag != "Player")
             {
                 if (controller.ActiveStateMovement == this)
                 {
