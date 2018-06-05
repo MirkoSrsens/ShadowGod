@@ -34,10 +34,4 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
-
-WorldOfAnger/Library/metadata/52/52a206b72a8f4f749c28d8b18b42dd19
-WorldOfAnger/Temp/UnityTempFile-0be276056172fd142baffc3349628eb6
-WorldOfAnger/Temp/UnityTempFile-d1d616eec60742842b62e2c0a8a1a971
-WorldOfAnger/Library/metadata/52/52a206b72a8f4f749c28d8b18b42dd19
-WorldOfAnger/Library/metadata/52/52a206b72a8f4f749c28d8b18b42dd19
-WorldOfAnger/Library/CurrentLayout.dwlt
+*.dwlt
