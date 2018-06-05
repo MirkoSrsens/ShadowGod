@@ -21,9 +21,36 @@ namespace Gameinformation
         /// </summary>
         public static bool Alarmed { get; set; }
 
+        private bool AlarmFlag { get; set; }
+
+        /// <summary>
+        /// Defines how much alarm will last.
+        /// </summary>
+        const float AlarmTime = 10;
+
+
+
         private void Awake()
         {
             TimeStoped = false;
+
+            if(Alarmed && !AlarmFlag)
+            {
+                AlarmFlag = true;
+                StartCoroutine(AlarmTimer());
+            }
+        }
+        private static void startAlarm()
+        { 
+
+        }
+
+        public IEnumerator AlarmTimer()
+        {
+            yield return new WaitForSeconds(AlarmTime);
+            Alarmed = false;
+            AlarmFlag = false;
+            Debug.Log("Alarm expired");
         }
     }
 }

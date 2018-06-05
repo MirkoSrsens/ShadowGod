@@ -577,12 +577,13 @@ GameObject:
   - component: {fileID: 124241617}
   - component: {fileID: 124241616}
   - component: {fileID: 124241615}
-  - component: {fileID: 124241620}
   - component: {fileID: 124241619}
+  - component: {fileID: 124241620}
   - component: {fileID: 124241621}
   - component: {fileID: 124241623}
   - component: {fileID: 124241622}
   - component: {fileID: 124241624}
+  - component: {fileID: 124241625}
   m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
@@ -780,7 +781,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
   animationController: {fileID: 0}
-  <Priority>k__BackingField: 0
+--- !u!114 &124241625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 124241614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dbe0c6122a907942898b1f0f6799bb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 0}
+  animationController: {fileID: 0}
 --- !u!1 &133680332
 GameObject:
   m_ObjectHideFlags: 0

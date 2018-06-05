@@ -42,15 +42,18 @@ namespace Enemy.State
         {
             if (controller.ActiveStateMovement == this)
             {
-                if (this.transform.rotation == Quaternion.Euler(0, 0, 0))
+                if (controller.ActiveStateMovement == this)
                 {
-                    directionCorrection = -1;
-                    this.transform.rotation = Quaternion.Euler(0, 180, 0);
-                }
-                else
-                {
-                    directionCorrection = 1;
-                    this.transform.rotation = Quaternion.Euler(0, 0, 0);
+                    if (this.transform.rotation == Quaternion.Euler(0, 0, 0))
+                    {
+                        directionCorrection = -1;
+                        this.transform.rotation = Quaternion.Euler(0, 180, 0);
+                    }
+                    else
+                    {
+                        directionCorrection = 1;
+                        this.transform.rotation = Quaternion.Euler(0, 0, 0);
+                    }
                 }
             }
         }

@@ -527,7 +527,7 @@
     <Compile Include="Assets\Scripts\Data\Interfaces\IEnemyData.cs" />
     <Compile Include="Assets\Scripts\Data\Interfaces\IMechanicsData.cs" />
     <Compile Include="Assets\Scripts\Data\Interfaces\MovementData.cs" />
-    <Compile Include="Assets\Scripts\Enemies\Detection\EnemyAttackPlayer.cs" />
+    <Compile Include="Assets\Scripts\Enemies\Combat\EnemyAttackPlayer.cs" />
     <Compile Include="Assets\Scripts\Enemies\Detection\EnemyDetectTarget.cs" />
     <Compile Include="Assets\Scripts\Enemies\Movement\EnemyFollowTarget.cs" />
     <Compile Include="Assets\Scripts\Enemies\Movement\EnemyPatroll.cs" />

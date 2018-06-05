@@ -24,7 +24,7 @@ namespace Enemy.State
             if (!GameInformation.Alarmed
                 && controller.ActiveStateMovement != this
                 && controller.ActiveStateMechanic != null
-                && controller.ActiveStateMechanic.GetType() == typeof(EnemyDetectTarget)
+                && controller.ActiveStateMechanic is EnemyDetectTarget
                 )
             {
                 controller.ForceSwapState(this);
