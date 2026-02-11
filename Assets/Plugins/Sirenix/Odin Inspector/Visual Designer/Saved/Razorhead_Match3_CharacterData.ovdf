@@ -1,0 +1,65 @@
+OVDF v1.1
+Razorhead.Match3.CharacterData, Razorhead.Match3
+MetaGuid:445fa8fe4f8a6234eb7f1a114ef410c9
+
+# id
+Position: $root:15
+
+# primaryColor
+Position: $root:16
+
+# playableCharacter
+Position: $root:17
+
+# traits
+Position: $root:24
++ [Sirenix.OdinInspector.ListDrawerSettingsAttribute]
+	ShowFoldout = False
+
+# scenePose
+Position: $root:18
+
+# attackTexture
+Position: $root:19
+
+# idleTexture
+Position: $root:20
+
+# customMatchBehaviour
+Position: $root:21
+
+# stats
+Position: $root:23
+
+# classInfo
+Position: $root:22
+- [Sirenix.OdinInspector.AssetSelectorAttribute]
+	IsUniqueList = True
+
+# passiveAbilities
+Position: $root:27
++ [Sirenix.OdinInspector.ListDrawerSettingsAttribute]
+	ShowFoldout = False
+
+# activeAbilities
+Position: $root:26
++ [Sirenix.OdinInspector.ListDrawerSettingsAttribute]
+	ShowFoldout = False
+- [Sirenix.OdinInspector.AssetListAttribute]
+	AutoPopulate = False
+- [Sirenix.OdinInspector.AssetSelectorAttribute]
++ [Sirenix.OdinInspector.PropertySpaceAttribute]
+	SpaceBefore = 0
+	SpaceAfter = 6
+
+# addressableGroupId
+Visibility: Hidden
+
+# GetTraits()
+Visibility: Hidden
+
+# synergyAbilities
+Position: $root:28
+
+# perkData
+Position: $root:25
