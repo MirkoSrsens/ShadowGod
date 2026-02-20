@@ -1,1 +1,0 @@
-sass --no-source-map --no-error-css --watch _.scss:../NuiStylesheet.uss
